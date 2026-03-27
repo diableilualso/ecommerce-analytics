@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Ecommerce Analytics Dashboard</h1>
+            <p>Real-time analytics for your ecommerce business</p>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h2>User Registration</h2>
+                <form id="registerForm">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit">Register</button>
+                </form>
+                <p id="registerMessage"></p>
+            </div>
+            
+            <div class="card">
+                <h2>Add User Data</h2>
+                <form id="dataForm">
+                    <input type="email" id="userEmail" placeholder="User email" required>
+                    <select id="platform">
+                        <option value="shopify">Shopify</option>
+                        <option value="woocommerce">WooCommerce</option>
+                        <option value="amazon">Amazon</option>
+                    </select>
+                    <textarea id="metrics" placeholder='{"revenue": 1000, "orders": 50, "visitors": 5000}'></textarea>
+                    <button type="submit">Add Data</button>
+                </form>
+                <p id="dataMessage"></p>
+            </div>
+            
+            <div class="card">
+                <h2>Recent Users</h2>
+                <div id="usersList"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Powered by Supabase & GitHub | Ecommerce Analytics v1.0</p>
+        </footer>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
