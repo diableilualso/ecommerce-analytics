@@ -10,7 +10,7 @@
 | 前端代码 | ✅ 完成 | `public/` 静态网站 |
 | 后端代码 | ✅ 完成 | `backend/` Node.js API |
 | Supabase | ✅ 已配置 | 数据库连接就绪 |
-| GitHub推送 | ❌ 阻塞 | 需要GitHub PAT |
+| GitHub推送 | ✅ 完成 | PAT认证成功，代码已推送 |
 | Vercel部署 | ❌ 阻塞 | 需要GitHub或Token |
 | Railway部署 | ❌ 阻塞 | 需要GitHub或Token |
 

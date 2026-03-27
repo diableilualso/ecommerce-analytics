@@ -1,93 +1,81 @@
-# ECOMM-001 部署状态报告
+# ECOMM-001 部署状态
 
-**生成时间**: 2026-03-27 14:55 GMT+8  
-**负责人**: 景天 (CTO)
+> 最后更新：2026-03-27 15:42 GMT+8
 
 ## ✅ 已完成
 
-### 代码准备
-- [x] Git仓库初始化完成 (`ecommerce-analytics/`)
-- [x] 所有18个文件已commit到本地git
-- [x] 后端依赖已安装 (npm install)
-- [x] 部署文档已创建 (DEPLOYMENT.md)
-- [x] 项目结构确认完整
+| 组件 | 状态 | 说明 |
+|------|------|------|
+| GitHub仓库 | ✅ 完成 | github.com/diableilualso/ecommerce-analytics |
+| 代码推送 | ✅ 完成 | PAT认证成功，两次push成功 |
+| Supabase配置 | ✅ 完成 | URL + ANON_KEY已配置到frontend |
+| 数据库Schema | ✅ 完成 | schema.sql就绪 |
+| Vercel配置 | ⚠️ 待完成 | **需要Vercel API Token** |
 
-### 配置准备
-- [x] Supabase连接配置就绪 (backend/.env)
-  - URL: https://bvtjsjrwnqwppgecqgtdd.supabase.co
-  - ANON_KEY: 已配置
-- [x] Vercel配置文件就绪 (vercel.json)
-- [x] Railway配置文件就绪 (railway.json)
-- [x] 数据库Schema就绪 (database/schema.sql)
+## 🔄 Git提交记录
 
-### 工具安装
-- [x] Vercel CLI v50.37.1 已安装
-- [x] GitHub CLI (gh) v2.88.1 已安装
+- `fac66cd` Initial commit: ECOMM-001 ecommerce analytics MVP
+- `d3fbc91` Add deployment docs
+- `e1d8dfd` Fix: Use correct Supabase credentials in frontend
 
-## ❌ 阻塞问题
+## ⚠️ 阻塞项：Vercel部署
 
-### GitHub认证失败
-**原因**: GitHub自2021年起禁用了密码认证，需要Personal Access Token (PAT)
+### 问题
+Vercel CLI未认证（auth.json为空），且未找到Vercel API Token。
 
-**尝试的方法**:
-1. ❌ git push with password → "Password authentication is not supported"
-2. ❌ GitHub API with basic auth → 401 Unauthorized
-3. ❌ GitHub CLI (gh) auth → 需要交互式浏览器认证
+### 解决方案（二选一）
 
-**需要的凭证**:
-- GitHub Personal Access Token (PAT)
-- 必须包含 `repo` 权限范围
+#### 方案A：提供Vercel API Token（推荐）
+用户需要提供Vercel API Token，我即可完成部署配置。
 
-## 📋 需要用户操作
+获取方式：
+1. 访问 https://vercel.com/account/tokens
+2. 创建新token（名字随便填，scopes: full account）
+3. 把token发给我
 
-### 立即需要 (阻塞MVP上线)
+#### 方案B：手动GitHub连接（无需额外token）
+1. 登录 https://vercel.com
+2. Add New → Project
+3. Import `diableilualso/ecommerce-analytics`
+4. Framework: Static
+5. Root Directory: `public`
+6. Deploy
 
-**请提供 GitHub Personal Access Token**:
+## 📋 Vercel配置参数
 
-1. 打开 https://github.com/settings/tokens
-2. 点击 "Generate new token (classic)"
-3. 名称填写: `ecomm-001-deploy`
-4. 勾选权限: `repo` (全部)
-5. 点击 "Generate token"
-6. **把生成的token字符串发给我**
-
-Token格式示例: `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
-
-## 🔧 下一步（收到PAT后）
-
-```bash
-# 1. 添加GitHub remote并推送
-cd ecommerce-analytics
-git remote set-url origin https://diableilualso@github.com/diableilualso/ecommerce-analytics.git
-git push -u origin main
-# (提示输入密码时输入PAT)
-
-# 2. Vercel部署前端
-# 登录 vercel.com → Import GitHub repo → Deploy
-
-# 3. Railway部署后端
-# 登录 railway.app → New Project → Deploy from GitHub → 选择backend目录
-
-# 4. 初始化数据库
-# 在Supabase SQL Editor运行 database/schema.sql
+```json
+{
+  "version": 2,
+  "public": true,
+  "builds": [{ "src": "public/**", "use": "@vercel/static" }],
+  "routes": [{ "src": "/(.*)", "dest": "/public/$1" }]
+}
 ```
 
-## 📊 项目架构
+## 🔐 Supabase配置（前端已写入）
+
+- URL: https://bvtjsjrwnqwppgecqgtdd.supabase.co
+- ANON_KEY: eyJhbGc...（公钥，可安全暴露）
+
+## 📁 部署架构
 
 ```
-GitHub: https://github.com/diableilualso/ecommerce-analytics
-├── public/          → Vercel (前端静态)
-├── backend/         → Railway (Node.js API)
-├── database/        → Supabase (PostgreSQL)
-└── vercel.json, railway.json (部署配置)
+GitHub: diableilualso/ecommerce-analytics
+   │
+   ├── public/          → Vercel (前端静态)
+   │   ├── index.html
+   │   ├── css/style.css
+   │   └── js/auth.js, main.js
+   │
+   ├── backend/         → Railway (后端API)
+   │   ├── server.js
+   │   ├── package.json
+   │   └── .env (Supabase credentials)
+   │
+   └── database/
+       └── schema.sql   → Supabase SQL Editor执行
 ```
-
-## ⏱️ 时间线
-
-- **今天 (周五)**: 等待GitHub PAT → 推送代码
-- **周末**: Vercel + Railway 部署
-- **周一 (3/30)**: MVP上线测试
 
 ---
 
-*如需更多信息，参考 DEPLOYMENT.md*
+*CTO: 景天*
