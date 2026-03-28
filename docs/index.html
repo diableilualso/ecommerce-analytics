@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商数据分析平台 - MVP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-chart-line"></i>
+                <span>电商数据分析</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">首页</a>
+                <a href="#features" class="nav-link">功能</a>
+                <a href="#about" class="nav-link">关于</a>
+                <div class="auth-buttons">
+                    <button id="loginBtn" class="btn btn-outline">登录</button>
+                    <button id="registerBtn" class="btn btn-primary">注册</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 英雄区域 -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1>简单、免费的电商数据分析工具</h1>
+                <p class="hero-subtitle">无需复杂配置，上传Excel即可获得专业的ROI分析和转化率报告</p>
+                <div class="hero-actions">
+                    <button id="tryFreeBtn" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> 免费试用
+                    </button>
+                    <button id="demoBtn" class="btn btn-outline btn-large">
+                        <i class="fas fa-play-circle"></i> 查看演示
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="dashboard-preview">
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>实时数据图表</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 功能特性 -->
+        <section id="features" class="features">
+            <h2>核心功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>Excel数据导入</h3>
+                    <p>提供标准Excel模板，上传即可自动解析销售数据、广告投放数据等</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>ROI自动计算</h3>
+                    <p>自动计算投资回报率、转化率、客单价等关键指标</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>可视化报告</h3>
+                    <p>生成直观的图表和报告，帮助您快速了解业务状况</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>数据安全</h3>
+                    <p>使用Supabase安全存储，您的数据仅您可见</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 使用流程 -->
+        <section class="workflow">
+            <h2>三步开始分析</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>注册账户</h3>
+                    <p>免费注册，立即开始使用</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>上传数据</h3>
+                    <p>下载Excel模板，填写您的业务数据</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>查看报告</h3>
+                    <p>系统自动分析，生成可视化报告</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于 -->
+        <section id="about" class="about">
+            <h2>关于我们</h2>
+            <p>这是一个完全免费的电商数据分析工具，旨在帮助中小电商卖家快速了解业务状况，优化运营策略。</p>
+            <p><strong>技术栈：</strong> HTML/CSS/JavaScript + Node.js + Supabase + Vercel + Railway</p>
+            <p><strong>成本：</strong> 完全免费（使用免费云服务）</p>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2026 电商数据分析平台 - MVP版本</p>
+            <p>技术支持：景天 (CTO) | 产品设计：包子 (CEO)</p>
+        </footer>
+    </div>
+
+    <!-- 模态框容器 -->
+    <div id="modalContainer"></div>
+
+    <!-- JavaScript文件 -->
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
